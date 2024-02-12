@@ -8,9 +8,11 @@ type ProductPageProps = {
 }
 
 async function getProduct() {
-  // const res = await fetch('https://fakestoreapi.com/products')
+  // const res = await fetch('https://fakestoreapi.com/products', {
+  //   cache: 'no-store',
+  // })
   const res = await fetch('http://localhost:3000/api/product', {
-    cache: 'force-cache',
+    cache: 'no-store',
     next: {
       tags: ['products'],
       // revalidate: 30
@@ -26,7 +28,7 @@ async function getProduct() {
 export default async function ProductPage(props: ProductPageProps) {
   const { params } = props
   const product = await getProduct()
-  console.log(product)
+  // console.log(product)
   // console.log(params)
   return (
     <div>
